@@ -10,6 +10,6 @@ class TestController {
 
     @GetMapping
     fun test(): String {
-        return "test"
+        return "test complete!!!"
     }
 }
