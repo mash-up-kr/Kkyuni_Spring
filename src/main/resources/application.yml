@@ -30,12 +30,12 @@ spring:
 cloud:
   aws:
     credentials:
-      accessKey: AKIA2FKI3VEHU5S2DDLE
-      secretKey: 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
+      accessKey: ${ACCESS_KEY}
+      secretKey: ${SECRET_KEY}
     s3:
-      bucket: ggyuni-bucket
+      bucket: ${BUCKET_NAME}
       dir: Gyunny/
     region:
-      static: ap-northeast-2
+      static: ${AWS_REGION}
     stack:
       auto: false

@@ -27,13 +27,13 @@ class S3Service(
     @Value("\${cloud.aws.s3.dir}")
     val dir: String? = null
 
-
     @Throws(IOException::class)
     fun upload(file: MultipartFile): String {
         val fileName = UUID.randomUUID().toString() + "-" + file.originalFilename
         val objMeta = ObjectMetadata()
 
         val bytes = IOUtils.toByteArray(file.inputStream)
+        objMeta.contentLength = bytes.size.toLong()
 
         val byteArrayIs = ByteArrayInputStream(bytes)
 
