@@ -25,3 +25,17 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: create
+
+
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIA2FKI3VEHU5S2DDLE
+      secretKey: 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
+    s3:
+      bucket: ggyuni-bucket
+      dir: Gyunny/
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
