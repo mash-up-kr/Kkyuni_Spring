@@ -22,3 +22,7 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: create
+
+ggyuni:
+  google:
+    id: ${GOOGLE_ID}
