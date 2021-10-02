@@ -1,9 +1,6 @@
-server:
-  port: 8080
-
 spring:
   datasource:
-    url: jdbc:h2:mem:gyunny
+    url: jdbc:h2:mem:ggyuni-db
     username: sa
     password:
 
