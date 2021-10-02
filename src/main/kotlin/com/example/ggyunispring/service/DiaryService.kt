@@ -1,14 +1,18 @@
 package com.example.ggyunispring.service
 
+import com.example.ggyunispring.common.enum.DiaryType
+import com.example.ggyunispring.common.enum.Emotion
 import com.example.ggyunispring.domain.entity.Diary
 import com.example.ggyunispring.domain.repository.DiaryRepository
 import com.example.ggyunispring.dto.request.CreateDiaryRequestDTO
 import com.example.ggyunispring.dto.response.CreateDiaryResponseDTO
 import com.example.ggyunispring.dto.response.DiaryResponseDTO
+import com.example.ggyunispring.error.DiaryNotFoundException
 import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 import java.time.YearMonth
+import javax.annotation.PostConstruct
 import javax.transaction.Transactional
 
 /**
@@ -19,6 +23,25 @@ class DiaryService(
     private val diaryRepository: DiaryRepository,
     private val modelMapper: ModelMapper
 ) {
+
+    @PostConstruct
+    fun init() {
+        repeat(10) {
+            diaryRepository.save(Diary(
+                musicTitle = "musicTitle${it}",
+                youtubeLink = "youtubeLink${it}",
+                musicThumbnailImage = "musicThumbnailImage${it}",
+                musicPlayTime = 0.0,
+                title = "title${it}",
+                content = "content${it}",
+                writingDate = LocalDate.now(),
+                diaryType = DiaryType.YELLOW1,
+                emotion = Emotion.FUNNY
+            ))
+        }
+
+    }
+
 
     @Transactional
     fun createDiary(createDiaryRequestDTO: CreateDiaryRequestDTO): CreateDiaryResponseDTO {
