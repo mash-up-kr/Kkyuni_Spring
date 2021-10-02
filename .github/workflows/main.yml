@@ -29,6 +29,8 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
         shell: bash
+        with:
+          google-id: ${{ secrets.GOOGLE_ID }}
 
       - name: Make zip file
         run: zip -r ./$GITHUB_SHA.zip .

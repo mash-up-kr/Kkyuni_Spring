@@ -25,4 +25,4 @@ spring:
 
 ggyuni:
   google:
-    id: ${{ secrets.GOOGLE_ID }}
+    id: ${GOOGLE_ID}
