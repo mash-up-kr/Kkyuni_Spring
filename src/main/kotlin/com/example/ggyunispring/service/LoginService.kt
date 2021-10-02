@@ -12,6 +12,7 @@ import com.google.api.client.json.jackson2.JacksonFactory
 import org.modelmapper.ModelMapper
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.util.*
 import javax.transaction.Transactional
@@ -22,6 +23,9 @@ class LoginService(
     private val jwtProvider: JwtProvider,
     private val modelMapper: ModelMapper,
 ) {
+
+    @Value("\${ggyuni.google.id}")
+    private lateinit var clientId: String
 
     @Transactional
     fun googleLogin(googleLoginRequestDTO: GoogleLoginRequestDTO): LoginResponseDTO {
@@ -40,7 +44,7 @@ class LoginService(
     // Google IdToken 검증 후 sub 값 가져오기
     private fun verifyTokenAndGetSub(idToken: String): String {
         val googleIdTokenVerifier = GoogleIdTokenVerifier.Builder(NetHttpTransport(), JacksonFactory.getDefaultInstance())
-            .setAudience(Collections.singletonList("CLIENT_ID"))
+            .setAudience(Collections.singletonList(clientId))
             .build()
         val token = googleIdTokenVerifier.verify(idToken) ?: throw Exception()
         return token.payload.subject
