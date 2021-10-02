@@ -9,6 +9,9 @@ data class CreateDiaryRequestDTO(
     @NotNull
     val emotion: Emotion,
 
+    @field:Length(min = 1, max = 200)
+    val musicLink: String,
+
     @field:Length(min = 1, max = 30)
     val musicTitle: String,
 

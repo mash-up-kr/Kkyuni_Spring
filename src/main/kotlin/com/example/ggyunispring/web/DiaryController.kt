@@ -1,7 +1,8 @@
 package com.example.ggyunispring.web
 
 import com.example.ggyunispring.dto.request.CreateDiaryRequestDTO
-import com.example.ggyunispring.dto.response.DiaryDetailResponseDto
+import com.example.ggyunispring.dto.response.CreateDiaryResponseDTO
+import com.example.ggyunispring.dto.response.DiaryDetailResponseDTO
 import com.example.ggyunispring.dto.response.ResponseDTO
 import com.example.ggyunispring.service.DiaryService
 import io.swagger.annotations.ApiOperation
@@ -24,14 +25,13 @@ class DiaryController(
 
     @ApiOperation("다이어리 하나 상세 조회")
     @GetMapping("/{diaryId}")
-    fun getDiaryDetails(@PathVariable diaryId: Long): ResponseEntity<DiaryDetailResponseDto> {
+    fun getDiaryDetails(@PathVariable diaryId: Long): ResponseEntity<DiaryDetailResponseDTO> {
         return ResponseDTO.of(200, diaryService.findById(diaryId))
     }
 
     @ApiOperation("다이어리 생성")
     @PostMapping("")
-    fun createDiary(@Valid @RequestBody createDiaryRequestDTO: CreateDiaryRequestDTO): ResponseEntity<Any> {
-        diaryService.createDiary(createDiaryRequestDTO)
-        return ResponseDTO.of(200, "test")
+    fun createDiary(@Valid @RequestBody createDiaryRequestDTO: CreateDiaryRequestDTO): ResponseEntity<CreateDiaryResponseDTO> {
+        return ResponseDTO.of(200, diaryService.createDiary(createDiaryRequestDTO))
     }
 }

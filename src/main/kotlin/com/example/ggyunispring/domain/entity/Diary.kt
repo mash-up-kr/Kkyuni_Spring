@@ -10,6 +10,7 @@ class Diary(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
     val musicTitle: String,
+    val musicLink: String,
     val musicThumbnailImage: String,
     val musicPlayTime: Double,
     val title: String,
