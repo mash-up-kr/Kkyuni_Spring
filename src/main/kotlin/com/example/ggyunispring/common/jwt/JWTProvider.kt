@@ -4,13 +4,12 @@ import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.server.reactive.ServerHttpRequest
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
 import java.util.*
+import javax.servlet.http.HttpServletRequest
 
 @Component
 class JwtProvider {
@@ -48,13 +47,13 @@ class JwtProvider {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token)
     }
 
-    fun getTokenFromHeader(request: ServerHttpRequest): String {
+    fun getTokenFromHeader(request: HttpServletRequest): String {
         checkEmptyToken(request)
-        return request.headers[HEADER_NAME].toString().replace("Bearer", "").trim()
+        return request.getHeader(HEADER_NAME).toString().replace("Bearer", "").trim()
     }
 
-    fun checkEmptyToken(request: ServerHttpRequest) {
-        if (request.headers[HEADER_NAME] == null) {
+    fun checkEmptyToken(request: HttpServletRequest) {
+        if (request.getHeader(HEADER_NAME) == null) {
             throw Exception()
         }
     }
