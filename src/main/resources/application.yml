@@ -26,3 +26,9 @@ spring:
 ggyuni:
   google:
     id: ${GOOGLE_ID}
+
+---
+
+spring:
+  profiles:
+    active: local
