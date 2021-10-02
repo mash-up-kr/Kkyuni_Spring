@@ -6,13 +6,12 @@ import com.example.ggyunispring.domain.repository.MemberRepository
 import com.example.ggyunispring.dto.request.GoogleLoginRequestDTO
 import com.example.ggyunispring.dto.response.LoginResponseDTO
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier
-import com.google.api.client.http.HttpTransport
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
 import org.modelmapper.ModelMapper
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.util.*
 import javax.transaction.Transactional
