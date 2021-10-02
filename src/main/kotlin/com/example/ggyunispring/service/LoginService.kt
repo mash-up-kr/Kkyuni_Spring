@@ -10,6 +10,8 @@ import com.google.api.client.http.HttpTransport
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
 import org.modelmapper.ModelMapper
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Service
 import java.util.*
 import javax.transaction.Transactional
@@ -47,6 +49,13 @@ class LoginService(
     private fun findMemberInfo(sub: String): Member {
         val findMember = memberRepository.findBySub(sub)
         return findMember.orElse(memberRepository.save(Member(sub = sub)))
+    }
+
+    fun login(): LoginResponseDTO {
+        val userDetails = SecurityContextHolder.getContext().authentication.details as UserDetails
+        val sub = userDetails.username
+        val findMember = memberRepository.findBySub(sub).orElseThrow { throw Exception() }
+        return modelMapper.map(findMember, LoginResponseDTO::class.java)
     }
 
 

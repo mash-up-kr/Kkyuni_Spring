@@ -28,4 +28,9 @@ class LoginController(
     fun googleLogin(@Valid @RequestBody googleLoginRequestDTO: GoogleLoginRequestDTO): ResponseEntity<LoginResponseDTO> {
         return ResponseDTO.of(200, loginService.googleLogin(googleLoginRequestDTO))
     }
+
+    @PostMapping
+    fun login(): ResponseEntity<LoginResponseDTO> {
+        return ResponseDTO.of(200, loginService.login())
+    }
 }
