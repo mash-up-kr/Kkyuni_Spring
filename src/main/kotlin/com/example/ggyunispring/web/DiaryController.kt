@@ -1,6 +1,7 @@
 package com.example.ggyunispring.web
 
 import com.example.ggyunispring.dto.request.CreateDiaryRequestDTO
+import com.example.ggyunispring.dto.response.DiaryDetailResponseDto
 import com.example.ggyunispring.dto.response.ResponseDTO
 import com.example.ggyunispring.service.DiaryService
 import io.swagger.annotations.ApiOperation
@@ -23,7 +24,7 @@ class DiaryController(
 
     @ApiOperation("다이어리 하나 상세 조회")
     @GetMapping("/{diaryId}")
-    fun getDiaryDetails(@PathVariable diaryId: Long): ResponseEntity<Any> {
+    fun getDiaryDetails(@PathVariable diaryId: Long): ResponseEntity<DiaryDetailResponseDto> {
         return ResponseDTO.of(200, diaryService.findById(diaryId))
     }
 
