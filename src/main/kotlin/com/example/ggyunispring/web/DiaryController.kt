@@ -32,9 +32,10 @@ class DiaryController(
     }
 
     @ApiOperation("다이어리 생성")
-    @PostMapping("")
+    @PostMapping
     fun createDiary(@Valid @RequestBody createDiaryRequestDTO: CreateDiaryRequestDTO): ResponseEntity<CreateDiaryResponseDTO> {
         return ResponseDTO.of(200, diaryService.createDiary(createDiaryRequestDTO))
     }
 
 }
+
