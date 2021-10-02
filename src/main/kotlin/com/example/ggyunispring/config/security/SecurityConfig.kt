@@ -24,7 +24,8 @@ class SecurityConfig(
             "/swagger-ui.html",
             "/webjars/**",
             "/api/v1/login/**",
-            "/error")
+            "/error",
+            "/**")
     }
 
     override fun configure(http: HttpSecurity) {

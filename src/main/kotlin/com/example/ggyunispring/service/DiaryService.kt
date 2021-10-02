@@ -27,9 +27,8 @@ class DiaryService(
         return modelMapper.map(diary, CreateDiaryResponseDTO::class.java);
     }
 
-    fun findByDiaryID(diaryId: Long): DiaryResponseDTO {
-        val diary = diaryRepository.findById(diaryId).orElseThrow { throw DiaryNotFoundException() }
-        return modelMapper.map(diary, DiaryResponseDTO::class.java);
+    fun findByDiaryID(localDate: LocalDate): DiaryResponseDTO {
+        return modelMapper.map(diaryRepository.findByWritingDate(localDate), DiaryResponseDTO::class.java);
     }
 
     fun findListByDate(yearMonth: YearMonth): List<DiaryResponseDTO> {
