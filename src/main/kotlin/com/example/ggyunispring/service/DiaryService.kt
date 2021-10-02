@@ -7,7 +7,6 @@ import com.example.ggyunispring.domain.repository.DiaryRepository
 import com.example.ggyunispring.dto.request.CreateDiaryRequestDTO
 import com.example.ggyunispring.dto.response.CreateDiaryResponseDTO
 import com.example.ggyunispring.dto.response.DiaryResponseDTO
-import com.example.ggyunispring.error.DiaryNotFoundException
 import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Service
 import java.time.LocalDate
@@ -41,7 +40,6 @@ class DiaryService(
         }
 
     }
-
 
     @Transactional
     fun createDiary(createDiaryRequestDTO: CreateDiaryRequestDTO): CreateDiaryResponseDTO {

@@ -1,5 +1,7 @@
 package com.example.ggyunispring.dto.response
 
+import com.example.ggyunispring.common.enum.DiaryType
+import com.example.ggyunispring.common.enum.Emotion
 import java.time.LocalDate
 
 /**
@@ -12,5 +14,7 @@ data class DiaryResponseDTO(
     val musicPlayTime: Double = 0.0,
     val title: String = "",
     val content: String = "",
-    val writingDate: LocalDate = LocalDate.MIN
+    val writingDate: LocalDate = LocalDate.MIN,
+    val diaryType: DiaryType = DiaryType.YELLOW1,
+    val emotion: Emotion = Emotion.FUNNY
 )
