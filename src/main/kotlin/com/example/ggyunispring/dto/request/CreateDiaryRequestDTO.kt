@@ -2,18 +2,18 @@ package com.example.ggyunispring.dto.request
 
 import com.example.ggyunispring.common.enum.Emotion
 import org.hibernate.validator.constraints.Length
-import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
 
 data class CreateDiaryRequestDTO(
 
-    //@field:NotBlank
+    @NotNull
     val emotion: Emotion,
 
     @field:Length(min = 1, max = 30)
     val musicTitle: String,
 
     @field:Length(min = 1, max = 200)
-    val musicThumbnail: String,
+    val musicThumbnailImage: String,
 
     val musicPlayTime: Double,
 

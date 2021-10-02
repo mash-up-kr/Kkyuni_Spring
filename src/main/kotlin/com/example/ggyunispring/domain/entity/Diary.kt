@@ -8,9 +8,9 @@ class Diary(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: String,
+    val id: Long,
     val musicTitle: String,
-    val musicThumbnail: String,
+    val musicThumbnailImage: String,
     val musicPlayTime: Double,
     val title: String,
     val content: String,
