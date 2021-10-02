@@ -37,3 +37,4 @@ out/
 .vscode/
 
 application-local.yml
+application-prod.yml
