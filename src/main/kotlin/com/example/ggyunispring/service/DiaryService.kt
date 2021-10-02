@@ -5,7 +5,6 @@ import com.example.ggyunispring.domain.repository.DiaryRepository
 import com.example.ggyunispring.dto.request.CreateDiaryRequestDTO
 import com.example.ggyunispring.dto.response.CreateDiaryResponseDTO
 import com.example.ggyunispring.dto.response.DiaryResponseDTO
-import com.example.ggyunispring.error.DiaryNotFoundException
 import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Service
 import java.time.LocalDate
@@ -34,8 +33,6 @@ class DiaryService(
     fun findListByDate(yearMonth: YearMonth): List<DiaryResponseDTO> {
         val startDayOfMonth = LocalDate.of(yearMonth.year, yearMonth.month, 1)
         val endDayOfMonth = startDayOfMonth.withDayOfMonth(startDayOfMonth.lengthOfMonth())
-        println(startDayOfMonth.toString())
-        println(endDayOfMonth.toString())
         return diaryRepository.findAllByWritingDateBetween(startDayOfMonth, endDayOfMonth)
             .map { modelMapper.map(it, DiaryResponseDTO::class.java) }
 
