@@ -8,6 +8,7 @@ import com.example.ggyunispring.dto.response.DiaryDetailResponseDTO
 import com.example.ggyunispring.error.DiaryNotFoundException
 import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Service
+import java.time.YearMonth
 import javax.transaction.Transactional
 
 /**
@@ -25,9 +26,13 @@ class DiaryService(
         return modelMapper.map(diary, CreateDiaryResponseDTO::class.java);
     }
 
-    fun findById(diaryId: Long): DiaryDetailResponseDTO {
+    fun findByDiaryID(diaryId: Long): DiaryDetailResponseDTO {
         val diary = diaryRepository.findById(diaryId).orElseThrow { throw DiaryNotFoundException() }
         return modelMapper.map(diary, DiaryDetailResponseDTO::class.java);
+    }
+
+    fun findListByDate(yearMonth: YearMonth) {
+
     }
 
 }
