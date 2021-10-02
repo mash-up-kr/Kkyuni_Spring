@@ -1,5 +1,6 @@
 package com.example.ggyunispring.dto.response
 
+import com.example.ggyunispring.common.enum.DiaryType
 import com.example.ggyunispring.common.enum.Emotion
 
 /**
@@ -8,6 +9,7 @@ import com.example.ggyunispring.common.enum.Emotion
 data class CreateDiaryResponseDTO(
     val diaryID: Long = 0L,
     val emotion: Emotion = Emotion.ANGRY,
+    val diaryType: DiaryType = DiaryType.YELLOW1,
     val musicTitle: String = "",
     val musicLink: String = "",
     val musicThumbnailImage: String = "",
