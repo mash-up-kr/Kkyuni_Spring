@@ -1,4 +1,9 @@
 package com.example.ggyunispring.dto.response
 
-class LoginResponseDTO {
+data class LoginResponseDTO(
+    val memberID: Long,
+    val sub: String,
+    var token: String,
+    var refreshToken: String
+) {
 }
