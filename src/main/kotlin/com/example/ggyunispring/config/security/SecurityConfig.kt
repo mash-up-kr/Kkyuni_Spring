@@ -15,7 +15,8 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             "/swagger-resources/**",
             "/configuration/security",
             "/swagger-ui.html",
-            "/webjars/**")
+            "/webjars/**",
+            "/api/v1/login/**")
     }
 
     override fun configure(http: HttpSecurity) {

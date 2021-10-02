@@ -44,7 +44,7 @@ class LoginService(
     // Google IdToken 검증 후 sub 값 가져오기
     private fun verifyTokenAndGetSub(idToken: String): String {
         val googleIdTokenVerifier = GoogleIdTokenVerifier.Builder(NetHttpTransport(), JacksonFactory.getDefaultInstance())
-            .setAudience(Collections.singletonList("CLIENT_ID"))
+            .setAudience(Collections.singletonList(clientId))
             .build()
         val token = googleIdTokenVerifier.verify(idToken) ?: throw Exception()
         return token.payload.subject
