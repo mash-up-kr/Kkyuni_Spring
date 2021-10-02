@@ -6,8 +6,16 @@ import javax.validation.constraints.NotBlank
 
 data class CreateDiaryRequestDTO(
 
-    @field:NotBlank
+    //@field:NotBlank
     val emotion: Emotion,
+
+    @field:Length(min = 1, max = 30)
+    val musicTitle: String,
+
+    @field:Length(min = 1, max = 200)
+    val musicThumbnail: String,
+
+    val musicPlayTime: Double,
 
     @field:Length(min = 1, max = 20)
     val title: String,
