@@ -22,3 +22,7 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: create
+
+ggyuni:
+  google:
+    id: 924686911312-si9k02cacnc39djbj86ofh47rj1mo706.apps.googleusercontent.com
