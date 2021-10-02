@@ -1,23 +1,16 @@
 package com.example.ggyunispring.web
 
-import com.example.ggyunispring.service.S3Service
-import org.springframework.web.bind.annotation.*
-import org.springframework.web.multipart.MultipartFile
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 @RequestMapping("/test")
 @RestController
-class TestController(
-    private val s3Service: S3Service
-) {
+class TestController {
 
     @GetMapping
     fun test(): String {
         return "Gyunny CI CD Test~"
-    }
-
-    @PostMapping("/upload")
-    fun uploadTest(@RequestPart("image") multipartFile: MultipartFile) {
-        s3Service.upload(multipartFile)
     }
 
 }
