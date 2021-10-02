@@ -4,10 +4,12 @@ import com.example.ggyunispring.domain.entity.Diary
 import com.example.ggyunispring.domain.repository.DiaryRepository
 import com.example.ggyunispring.dto.request.CreateDiaryRequestDTO
 import com.example.ggyunispring.dto.response.CreateDiaryResponseDTO
-import com.example.ggyunispring.dto.response.DiaryDetailResponseDTO
+import com.example.ggyunispring.dto.response.DiaryResponseDTO
 import com.example.ggyunispring.error.DiaryNotFoundException
 import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Service
+import java.time.LocalDate
+import java.time.YearMonth
 import javax.transaction.Transactional
 
 /**
@@ -25,9 +27,19 @@ class DiaryService(
         return modelMapper.map(diary, CreateDiaryResponseDTO::class.java);
     }
 
-    fun findById(diaryId: Long): DiaryDetailResponseDTO {
+    fun findByDiaryID(diaryId: Long): DiaryResponseDTO {
         val diary = diaryRepository.findById(diaryId).orElseThrow { throw DiaryNotFoundException() }
-        return modelMapper.map(diary, DiaryDetailResponseDTO::class.java);
+        return modelMapper.map(diary, DiaryResponseDTO::class.java);
+    }
+
+    fun findListByDate(yearMonth: YearMonth): List<DiaryResponseDTO> {
+        val startDayOfMonth = LocalDate.of(yearMonth.year, yearMonth.month, 1)
+        val endDayOfMonth = startDayOfMonth.withDayOfMonth(startDayOfMonth.lengthOfMonth())
+        println(startDayOfMonth.toString())
+        println(endDayOfMonth.toString())
+        return diaryRepository.findAllByWritingDateBetween(startDayOfMonth, endDayOfMonth)
+            .map { modelMapper.map(it, DiaryResponseDTO::class.java) }
+
     }
 
 }
