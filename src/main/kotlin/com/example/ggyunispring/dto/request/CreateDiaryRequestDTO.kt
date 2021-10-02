@@ -14,7 +14,7 @@ data class CreateDiaryRequestDTO(
     val diaryType: DiaryType,
 
     @field:Length(min = 1, max = 200)
-    val musicLink: String,
+    val youtubeLink: String,
 
     @field:Length(min = 1, max = 30)
     val musicTitle: String,

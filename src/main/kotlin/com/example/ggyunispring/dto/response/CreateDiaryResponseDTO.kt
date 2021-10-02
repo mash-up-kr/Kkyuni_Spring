@@ -11,7 +11,7 @@ data class CreateDiaryResponseDTO(
     val emotion: Emotion = Emotion.ANGRY,
     val diaryType: DiaryType = DiaryType.YELLOW1,
     val musicTitle: String = "",
-    val musicLink: String = "",
+    val youtubeLink: String = "",
     val musicThumbnailImage: String = "",
     val musicPlayTime: Double = 0.0,
     val title: String = "",
