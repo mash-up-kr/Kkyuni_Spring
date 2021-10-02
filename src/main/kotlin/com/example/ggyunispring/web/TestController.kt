@@ -10,7 +10,7 @@ class TestController {
 
     @GetMapping
     fun test(): String {
-        return "Gyunny CI CD Test~"
+        return "Gyunny Actions"
     }
 
 }
