@@ -5,6 +5,7 @@ import com.example.ggyunispring.domain.entity.Member
 import com.example.ggyunispring.domain.repository.MemberRepository
 import com.example.ggyunispring.dto.request.GoogleLoginRequestDTO
 import com.example.ggyunispring.dto.response.LoginResponseDTO
+import com.example.ggyunispring.error.member.GoogleIdTokenException
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
@@ -45,7 +46,7 @@ class LoginService(
         val googleIdTokenVerifier = GoogleIdTokenVerifier.Builder(NetHttpTransport(), JacksonFactory.getDefaultInstance())
             .setAudience(Collections.singletonList(clientId))
             .build()
-        val token = googleIdTokenVerifier.verify(idToken) ?: throw Exception()
+        val token = googleIdTokenVerifier.verify(idToken) ?: throw GoogleIdTokenException()
         return token.payload.subject
     }
 
