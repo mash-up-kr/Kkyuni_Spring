@@ -14,14 +14,6 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 class GlobalExceptionHandler {
 
     /**
-     * Entity 가 존재하지 않을 때 204 반환
-     */
-    @ExceptionHandler(EntityNotFoundException::class)
-    fun diaryNotFoundException(): ResponseEntity<Any> {
-        return ResponseEntity.status(204).body(null)
-    }
-
-    /**
      * 구글 ID 토큰이 잘못되었을 경우
      */
     @ExceptionHandler(GoogleIdTokenException::class)

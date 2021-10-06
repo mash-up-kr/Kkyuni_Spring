@@ -27,7 +27,7 @@ class DiaryController(
 
     @ApiOperation("다이어리 하나 상세 조회")
     @GetMapping("/{date}")
-    fun getDiaryDetails(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("date") localDate: LocalDate): ResponseEntity<DiaryResponseDTO> {
+    fun getDiaryDetails(@DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable("date") localDate: LocalDate): ResponseEntity<DiaryResponseDTO?> {
         return ResponseDTO.of(200, diaryService.findByDiaryID(localDate))
     }
 
