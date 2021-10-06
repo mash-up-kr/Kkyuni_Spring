@@ -7,12 +7,13 @@ import com.example.ggyunispring.domain.repository.DiaryRepository
 import com.example.ggyunispring.dto.request.CreateDiaryRequestDTO
 import com.example.ggyunispring.dto.response.CreateDiaryResponseDTO
 import com.example.ggyunispring.dto.response.DiaryResponseDTO
+import com.example.ggyunispring.error.EntityNotFoundException
 import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate
 import java.time.YearMonth
 import javax.annotation.PostConstruct
-import javax.transaction.Transactional
 
 /**
  * created by Gyunny 2021/10/02
@@ -33,7 +34,7 @@ class DiaryService(
                 musicPlayTime = 0.0,
                 title = "title${it}",
                 content = "content${it}",
-                writingDate = LocalDate.now(),
+                writingDate = LocalDate.of(2021, it + 1, 1),
                 diaryType = DiaryType.YELLOW1,
                 emotion = Emotion.FUNNY
             ))
@@ -44,19 +45,21 @@ class DiaryService(
     @Transactional
     fun createDiary(createDiaryRequestDTO: CreateDiaryRequestDTO): CreateDiaryResponseDTO {
         val diary = diaryRepository.save(modelMapper.map(createDiaryRequestDTO, Diary::class.java))
-        return modelMapper.map(diary, CreateDiaryResponseDTO::class.java);
+        return modelMapper.map(diary, CreateDiaryResponseDTO::class.java)
     }
 
+    @Transactional(readOnly = true)
     fun findByDiaryID(localDate: LocalDate): DiaryResponseDTO {
-        return modelMapper.map(diaryRepository.findByWritingDate(localDate), DiaryResponseDTO::class.java);
+        val diary = diaryRepository.findByWritingDate(localDate) ?: throw EntityNotFoundException()
+        return modelMapper.map(diary, DiaryResponseDTO::class.java);
     }
 
+    @Transactional(readOnly = true)
     fun findListByDate(yearMonth: YearMonth): List<DiaryResponseDTO> {
         val startDayOfMonth = LocalDate.of(yearMonth.year, yearMonth.month, 1)
         val endDayOfMonth = startDayOfMonth.withDayOfMonth(startDayOfMonth.lengthOfMonth())
         return diaryRepository.findAllByWritingDateBetween(startDayOfMonth, endDayOfMonth)
             .map { modelMapper.map(it, DiaryResponseDTO::class.java) }
-
     }
 
 }
