@@ -22,4 +22,3 @@ fi
 DEPLOY_JAR=$DEPLOY_PATH$JAR_NAME
 echo "> DEPLOY_JAR 배포"    >> /home/ec2-user/mash/deploy.log
 sudo sh /home/ec2-user/mash/mash.sh
-#nohup java -jar /home/ec2-user/mash/ggyuni-spring-0.0.1-SNAPSHOT.jar --GOOGLE_ID=924686911312-si9k02cacnc39djbj86ofh47rj1mo706.apps.googleusercontent.com >> /home/ec2-user/deploy.log 2>/home/ec2-user/mash/deploy_err.log &
