@@ -7,7 +7,6 @@ import com.example.ggyunispring.domain.repository.DiaryRepository
 import com.example.ggyunispring.dto.request.CreateDiaryRequestDTO
 import com.example.ggyunispring.dto.response.CreateDiaryResponseDTO
 import com.example.ggyunispring.dto.response.DiaryResponseDTO
-import com.example.ggyunispring.error.EntityNotFoundException
 import org.modelmapper.ModelMapper
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -49,8 +48,8 @@ class DiaryService(
     }
 
     @Transactional(readOnly = true)
-    fun findByDiaryID(localDate: LocalDate): DiaryResponseDTO {
-        val diary = diaryRepository.findByWritingDate(localDate) ?: throw EntityNotFoundException()
+    fun findByDiaryID(localDate: LocalDate): DiaryResponseDTO? {
+        val diary = diaryRepository.findByWritingDate(localDate) ?: return null
         return modelMapper.map(diary, DiaryResponseDTO::class.java);
     }
 

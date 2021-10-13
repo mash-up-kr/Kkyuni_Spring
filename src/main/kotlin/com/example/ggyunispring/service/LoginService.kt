@@ -62,5 +62,4 @@ class LoginService(
         return modelMapper.map(findMember, LoginResponseDTO::class.java)
     }
 
-
 }
