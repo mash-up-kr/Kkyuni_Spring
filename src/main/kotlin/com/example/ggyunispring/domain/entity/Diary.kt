@@ -25,7 +25,7 @@ class Diary(
     val diaryType: DiaryType = DiaryType.YELLOW1,
 
     @Enumerated(value = EnumType.STRING)
-    val emotion:Emotion = Emotion.ANGRY,
+    val emotion:Emotion = Emotion.sad,
 
     @Embedded
     val createModifyTime: CreateModifyTime = CreateModifyTime()

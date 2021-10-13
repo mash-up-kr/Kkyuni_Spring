@@ -35,7 +35,7 @@ class DiaryService(
                 content = "content${it}",
                 writingDate = LocalDate.of(2021, it + 1, 1),
                 diaryType = DiaryType.YELLOW1,
-                emotion = Emotion.FUNNY
+                emotion = Emotion.happy
             ))
         }
 

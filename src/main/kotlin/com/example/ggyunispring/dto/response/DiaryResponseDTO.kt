@@ -16,5 +16,5 @@ data class DiaryResponseDTO(
     val content: String = "",
     val writingDate: LocalDate = LocalDate.MIN,
     val diaryType: DiaryType = DiaryType.YELLOW1,
-    val emotion: Emotion = Emotion.FUNNY
+    val emotion: Emotion = Emotion.sad
 )
