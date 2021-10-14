@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Service
 import java.util.*
+import javax.annotation.PostConstruct
 import javax.transaction.Transactional
 
 @Service
@@ -26,6 +27,14 @@ class LoginService(
 
     @Value("\${ggyuni.google.id}")
     private lateinit var clientId: String
+
+    @PostConstruct
+    fun init() {
+        memberRepository.save(Member(
+            sub = "testSub",
+            token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0U3ViIiwiaWF0IjoxNjM0MTkwODQwLCJleHAiOjE2MzY3ODI4NDB9.P8BVBvy7ctLC0N0mDALjr-AEb8n1OzIaqgCSMofrg0Y",
+            refreshToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0U3ViIiwiaWF0IjoxNjM0MTkwODQwLCJleHAiOjE2MzY3ODI4NDB9.P8BVBvy7ctLC0N0mDALjr-AEb8n1OzIaqgCSMofrg0Y"))
+    }
 
     @Transactional
     fun googleLogin(googleLoginRequestDTO: GoogleLoginRequestDTO): LoginResponseDTO {
