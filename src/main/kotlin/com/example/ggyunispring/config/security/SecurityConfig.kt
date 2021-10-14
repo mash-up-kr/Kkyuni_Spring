@@ -21,15 +21,14 @@ class SecurityConfig(
             "/configuration/ui",
             "/swagger-resources/**",
             "/configuration/security",
-            "/swagger-ui.html",
+            "/swagger-ui/**",
             "/webjars/**",
-            "/api/v1/login/**",
-            "/error",
-            "/**")
+            "/api/v1/login/google",
+            "/error")
     }
 
     override fun configure(http: HttpSecurity) {
-        http.authorizeRequests().antMatchers("/**").permitAll()
+        http.authorizeRequests().antMatchers("/**").authenticated()
         http.httpBasic().disable()
         http.cors().disable()
         http.csrf().disable()
