@@ -8,6 +8,8 @@ import com.example.ggyunispring.dto.request.CreateDiaryRequestDTO
 import com.example.ggyunispring.dto.response.CreateDiaryResponseDTO
 import com.example.ggyunispring.dto.response.DiaryResponseDTO
 import org.modelmapper.ModelMapper
+import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate
@@ -43,13 +45,14 @@ class DiaryService(
 
     @Transactional
     fun createDiary(createDiaryRequestDTO: CreateDiaryRequestDTO): CreateDiaryResponseDTO {
-        val diary = diaryRepository.save(modelMapper.map(createDiaryRequestDTO, Diary::class.java))
-        return modelMapper.map(diary, CreateDiaryResponseDTO::class.java)
+        val diary = modelMapper.map(createDiaryRequestDTO, Diary::class.java)
+        diary.updateDiaryMemberId(extractMemberId())
+        return modelMapper.map(diaryRepository.save(diary), CreateDiaryResponseDTO::class.java)
     }
 
     @Transactional(readOnly = true)
     fun findByDiaryWritingDate(localDate: LocalDate): DiaryResponseDTO? {
-        val diary = diaryRepository.findByWritingDate(localDate) ?: return null
+        val diary = diaryRepository.findByWritingDateAndMemberId(localDate, extractMemberId()) ?: return null
         return modelMapper.map(diary, DiaryResponseDTO::class.java);
     }
 
@@ -57,8 +60,13 @@ class DiaryService(
     fun findListByDate(yearMonth: YearMonth): List<DiaryResponseDTO> {
         val startDayOfMonth = LocalDate.of(yearMonth.year, yearMonth.month, 1)
         val endDayOfMonth = startDayOfMonth.withDayOfMonth(startDayOfMonth.lengthOfMonth())
-        return diaryRepository.findAllByWritingDateBetween(startDayOfMonth, endDayOfMonth)
+        return diaryRepository.findAllByWritingDateBetweenAndMemberId(startDayOfMonth, endDayOfMonth, extractMemberId())
             .map { modelMapper.map(it, DiaryResponseDTO::class.java) }
+    }
+
+    private fun extractMemberId(): Long {
+        val userDetails = SecurityContextHolder.getContext().authentication.principal as UserDetails
+        return userDetails.username.toLong()
     }
 
 }
