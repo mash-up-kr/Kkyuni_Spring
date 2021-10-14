@@ -20,6 +20,7 @@ class Diary(
     val title: String = "",
     val content: String = "",
     val writingDate: LocalDate = LocalDate.now(),
+    private var memberId: Long = 0L,
 
     @Enumerated(value = EnumType.STRING)
     val diaryType: DiaryType = DiaryType.YELLOW1,
@@ -29,4 +30,9 @@ class Diary(
 
     @Embedded
     val createModifyTime: CreateModifyTime = CreateModifyTime()
-)
+) {
+
+    fun updateDiaryMemberId(memberId: Long) {
+        this.memberId = memberId;
+    }
+}

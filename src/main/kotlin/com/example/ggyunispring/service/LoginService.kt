@@ -75,7 +75,7 @@ class LoginService(
     }
 
     override fun loadUserByUsername(username: String?): UserDetails {
-        if(username == null) {
+        if (username == null) {
             throw UsernameNotFoundException("Not Exist User")
         }
 

@@ -9,6 +9,6 @@ import java.time.LocalDate
  */
 interface DiaryRepository : CrudRepository<Diary, Long> {
 
-    fun findAllByWritingDateBetween(startDayOfMonth: LocalDate, endDayOfMonth: LocalDate): List<Diary>
-    fun findByWritingDate(localDate: LocalDate): Diary?
+    fun findAllByWritingDateBetweenAndMemberId(startDayOfMonth: LocalDate, endDayOfMonth: LocalDate, memberId: Long): List<Diary>
+    fun findByWritingDateAndMemberId(localDate: LocalDate, memberId: Long): Diary?
 }
