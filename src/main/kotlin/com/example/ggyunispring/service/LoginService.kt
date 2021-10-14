@@ -12,7 +12,10 @@ import com.google.api.client.json.jackson2.JacksonFactory
 import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.core.context.SecurityContextHolder
+import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 import java.util.*
 import javax.transaction.Transactional
@@ -22,7 +25,7 @@ class LoginService(
     private val memberRepository: MemberRepository,
     private val jwtProvider: JwtProvider,
     private val modelMapper: ModelMapper,
-) {
+): UserDetailsService {
 
     @Value("\${ggyuni.google.id}")
     private lateinit var clientId: String
@@ -52,14 +55,23 @@ class LoginService(
 
     private fun findMemberInfo(sub: String): Member {
         val findMember = memberRepository.findBySub(sub)
-        return findMember.orElse(memberRepository.save(Member(sub = sub)))
+        return findMember ?: memberRepository.save(Member(sub = sub))
     }
 
     fun login(): LoginResponseDTO {
-        val userDetails = SecurityContextHolder.getContext().authentication.details as UserDetails
-        val sub = userDetails.username
-        val findMember = memberRepository.findBySub(sub).orElseThrow { throw Exception() }
+        val userDetails = SecurityContextHolder.getContext().authentication.principal as UserDetails
+        val memberID = userDetails.username
+        val findMember = memberRepository.findById(memberID.toLong()).orElseThrow { throw UsernameNotFoundException("Not Exist User") }
         return modelMapper.map(findMember, LoginResponseDTO::class.java)
+    }
+
+    override fun loadUserByUsername(username: String?): UserDetails {
+        if(username == null) {
+            throw UsernameNotFoundException("Not Exist User")
+        }
+
+        val findMember = memberRepository.findBySub(username) ?: throw UsernameNotFoundException("Not Exist User")
+        return User.builder().username(findMember.memberID.toString()).password("").roles("").build()
     }
 
 }
