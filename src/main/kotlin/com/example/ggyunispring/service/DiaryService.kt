@@ -48,7 +48,7 @@ class DiaryService(
     }
 
     @Transactional(readOnly = true)
-    fun findByDiaryID(localDate: LocalDate): DiaryResponseDTO? {
+    fun findByDiaryWritingDate(localDate: LocalDate): DiaryResponseDTO? {
         val diary = diaryRepository.findByWritingDate(localDate) ?: return null
         return modelMapper.map(diary, DiaryResponseDTO::class.java);
     }
