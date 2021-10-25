@@ -1,5 +1,6 @@
 package com.example.ggyunispring.common.jwt
 
+import com.example.ggyunispring.common.enum.JWT.KEY_VALUE_EMPTY
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -16,18 +17,27 @@ class JwtAuthenticationFilter(
 ): GenericFilterBean() {
     override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
         val token: String = jwtProvider.getTokenFromHeader(request as HttpServletRequest)
+        if (token == KEY_VALUE_EMPTY.name) {
+            abnormalMessage(response)
+            return
+        }
+
         if (jwtProvider.validateTokenIssuedDate(token)) {
             val authentication: Authentication = jwtProvider.getAuthentication(token, userDetailsService)
             SecurityContextHolder.getContext().authentication = authentication
         } else {
-            val httpServletResponse = response as HttpServletResponse
-            httpServletResponse.status = 400
-            httpServletResponse.contentType = "application/json"
-            httpServletResponse.characterEncoding = "utf8"
-            httpServletResponse.writer.write("비정상 메시지")
+            abnormalMessage(response)
             return
         }
 
         chain!!.doFilter(request, response)
+    }
+
+    private fun abnormalMessage(response: ServletResponse) {
+        val httpServletResponse = response as HttpServletResponse
+        httpServletResponse.status = 401
+        httpServletResponse.contentType = "application/json"
+        httpServletResponse.characterEncoding = "utf8"
+        httpServletResponse.writer.write("비정상 메시지")
     }
 }
