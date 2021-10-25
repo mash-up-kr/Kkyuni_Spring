@@ -48,14 +48,8 @@ class JwtProvider {
     }
 
     fun getTokenFromHeader(request: HttpServletRequest): String {
-        checkEmptyToken(request)
-        return request.getHeader(HEADER_NAME).toString().replace("Bearer", "").trim()
-    }
-
-    fun checkEmptyToken(request: HttpServletRequest) {
-        if (request.getHeader(HEADER_NAME) == null) {
-            throw Exception()
-        }
+        val accessToken = request.getHeader(HEADER_NAME) ?: return "Empty"
+        return accessToken.replace("Bearer", "").trim()
     }
 
     fun validateTokenIssuedDate(token: String): Boolean {

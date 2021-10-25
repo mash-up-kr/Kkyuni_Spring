@@ -16,16 +16,18 @@ class JwtAuthenticationFilter(
 ): GenericFilterBean() {
     override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
         val token: String = jwtProvider.getTokenFromHeader(request as HttpServletRequest)
-        if (jwtProvider.validateTokenIssuedDate(token)) {
-            val authentication: Authentication = jwtProvider.getAuthentication(token, userDetailsService)
-            SecurityContextHolder.getContext().authentication = authentication
-        } else {
+        if (token == "Empty" || token == "") {
             val httpServletResponse = response as HttpServletResponse
-            httpServletResponse.status = 400
+            httpServletResponse.status = 401
             httpServletResponse.contentType = "application/json"
             httpServletResponse.characterEncoding = "utf8"
             httpServletResponse.writer.write("비정상 메시지")
             return
+        }
+
+        if (jwtProvider.validateTokenIssuedDate(token)) {
+            val authentication: Authentication = jwtProvider.getAuthentication(token, userDetailsService)
+            SecurityContextHolder.getContext().authentication = authentication
         }
 
         chain!!.doFilter(request, response)
