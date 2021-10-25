@@ -1,5 +1,7 @@
 package com.example.ggyunispring.common.jwt
 
+import com.example.ggyunispring.common.enum.JWT
+import com.example.ggyunispring.common.enum.JWT.KEY_VALUE_EMPTY
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts
@@ -48,7 +50,7 @@ class JwtProvider {
     }
 
     fun getTokenFromHeader(request: HttpServletRequest): String {
-        val accessToken = request.getHeader(HEADER_NAME) ?: return "Empty"
+        val accessToken = request.getHeader(HEADER_NAME) ?: return KEY_VALUE_EMPTY.name
         return accessToken.replace("Bearer", "").trim()
     }
 
