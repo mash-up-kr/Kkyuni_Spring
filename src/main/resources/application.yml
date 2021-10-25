@@ -26,3 +26,6 @@ spring:
 ggyuni:
   google:
     id: ${GOOGLE_ID}
+
+jwt:
+  secret: ${SECRET_KEY}
