@@ -31,6 +31,7 @@ jobs:
         shell: bash
         env:
           GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
       - name: Make zip file
         run: zip -r ./$GITHUB_SHA.zip .
