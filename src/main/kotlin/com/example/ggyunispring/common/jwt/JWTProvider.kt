@@ -24,7 +24,7 @@ class JwtProvider {
     private val refreshTokenValidTime: Long = 365 * 24 * 60 * 60 * 1000L
 
     companion object {
-        val HEADER_NAME: String = "Authorization"
+        const val HEADER_NAME: String = "Authorization"
     }
 
     @PostConstruct
