@@ -16,7 +16,8 @@ class SecurityConfig(
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(web: WebSecurity) {
-        web.ignoring().antMatchers( "/h2-console/**",
+        web.ignoring().antMatchers(
+            "/h2-console/**",
             "/v2/api-docs",
             "/configuration/ui",
             "/swagger-resources/**",
