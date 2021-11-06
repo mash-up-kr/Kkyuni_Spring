@@ -10,7 +10,7 @@ import java.time.LocalDate
 data class DiaryResponseDTO(
     val diaryID: Long = 0L,
     val youtubeLink: String = "",
-    val musicThumbnailImage: String = "",
+    val webViewURL: String = "",
     val musicPlayTime: Double = 0.0,
     val title: String = "",
     val content: String = "",

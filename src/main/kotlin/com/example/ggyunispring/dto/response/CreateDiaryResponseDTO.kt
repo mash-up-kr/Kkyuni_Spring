@@ -13,7 +13,7 @@ data class CreateDiaryResponseDTO(
     val diaryType: DiaryType = DiaryType.YELLOW1,
     val musicTitle: String = "",
     val youtubeLink: String = "",
-    val musicThumbnailImage: String = "",
+    val webViewURL: String = "",
     val musicPlayTime: Double = 0.0,
     val title: String = "",
     val content: String = "",
