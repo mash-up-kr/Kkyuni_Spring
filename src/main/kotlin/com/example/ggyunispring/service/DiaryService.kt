@@ -38,6 +38,8 @@ class DiaryService(
                 writingDate = LocalDate.of(2021, it + 1, 1),
                 diaryType = DiaryType.YELLOW1,
                 emotion = Emotion.happy,
+                latitude = "$it.123",
+                longitude = "$it.456",
                 memberId = 1L
             ))
         }

@@ -19,6 +19,8 @@ class Diary(
     val musicPlayTime: Double = 0.0,
     val title: String = "",
     val content: String = "",
+    val latitude: String = "",
+    val longitude: String = "",
     val writingDate: LocalDate = LocalDate.now(),
     private var memberId: Long = 0L,
 
