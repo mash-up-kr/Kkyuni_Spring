@@ -25,6 +25,7 @@ class SecurityConfig(
             "/swagger-ui/**",
             "/webjars/**",
             "/api/v1/login/google",
+            "/api/v1/login/refresh",
             "/error")
     }
 
