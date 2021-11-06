@@ -14,4 +14,5 @@ enum class ErrorType(
     INTERNAL_SERVER_ERROR(500, "Server Error"),
     INVALID_TYPE_VALUE(400, "Invalid Type Value"),
     HANDLE_ACCESS_DENIED(403, "Access is Denied"),
+    INVALID_JWT_TOKEN(400, "토큰이 올바르지 않습니다."),
 }

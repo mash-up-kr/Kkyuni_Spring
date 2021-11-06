@@ -6,6 +6,7 @@ import com.example.ggyunispring.domain.repository.MemberRepository
 import com.example.ggyunispring.dto.request.GoogleLoginRequestDTO
 import com.example.ggyunispring.dto.response.LoginResponseDTO
 import com.example.ggyunispring.error.member.GoogleIdTokenException
+import com.example.ggyunispring.error.member.InvalidJwtTokenException
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
@@ -33,10 +34,15 @@ class LoginService(
 
     @PostConstruct
     fun init() {
+        val token = jwtProvider.createToken("1")
+        val refreshToken = jwtProvider.createRefreshToken("1")
+        println(token)
+        println(refreshToken)
         memberRepository.save(Member(
             sub = "testSub",
-            token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0U3ViIiwiaWF0IjoxNjM0MTkwODQwLCJleHAiOjE2MzY3ODI4NDB9.P8BVBvy7ctLC0N0mDALjr-AEb8n1OzIaqgCSMofrg0Y",
-            refreshToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0U3ViIiwiaWF0IjoxNjM0MTkwODQwLCJleHAiOjE2MzY3ODI4NDB9.P8BVBvy7ctLC0N0mDALjr-AEb8n1OzIaqgCSMofrg0Y"))
+            token = token,
+            refreshToken = refreshToken)
+        )
     }
 
     @Transactional
@@ -79,8 +85,25 @@ class LoginService(
             throw UsernameNotFoundException("Not Exist User")
         }
 
-        val findMember = memberRepository.findBySub(username) ?: throw UsernameNotFoundException("Not Exist User")
+        val findMember = memberRepository.findById(username.toLong()).orElseThrow{ throw UsernameNotFoundException("Not Exist User") }
         return User.builder().username(findMember.memberID.toString()).password("").roles("").build()
+    }
+
+    @Transactional
+    fun updateToken(refreshToken: String): LoginResponseDTO {
+        // jwt 검증(Secret Key, Date ... )
+        if(!jwtProvider.validateTokenIssuedDate(refreshToken)) {
+            throw InvalidJwtTokenException()
+        }
+        // 재발급
+        val memberID = jwtProvider.getSubFromToken(refreshToken).toLong()
+        val findMember = memberRepository.findByMemberIDAndRefreshToken(memberID, refreshToken) ?: throw InvalidJwtTokenException()
+        val newToken = jwtProvider.createToken(memberID.toString())
+        val newRefreshToken = jwtProvider.createRefreshToken(memberID.toString())
+        // 저장
+        findMember.updateToken(newToken)
+        findMember.updateRefreshToken(newRefreshToken)
+        return modelMapper.map(findMember, LoginResponseDTO::class.java)
     }
 
 }

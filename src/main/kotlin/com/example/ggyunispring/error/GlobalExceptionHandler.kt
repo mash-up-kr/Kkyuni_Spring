@@ -1,6 +1,7 @@
 package com.example.ggyunispring.error
 
 import com.example.ggyunispring.error.member.GoogleIdTokenException
+import com.example.ggyunispring.error.member.InvalidJwtTokenException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -28,6 +29,12 @@ class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentTypeMismatchException::class)
     fun methodArgumentTypeMisMatchException(): ResponseEntity<ErrorResponse> {
         val errorType = ErrorType.INVALID_DATE_INPUT_VALUE
+        return ResponseEntity(ErrorResponse.of(errorType), HttpStatus.BAD_REQUEST)
+    }
+
+    @ExceptionHandler(InvalidJwtTokenException::class)
+    fun invalidJwtTokenException(): ResponseEntity<ErrorResponse> {
+        val errorType = ErrorType.INVALID_JWT_TOKEN
         return ResponseEntity(ErrorResponse.of(errorType), HttpStatus.BAD_REQUEST)
     }
 
