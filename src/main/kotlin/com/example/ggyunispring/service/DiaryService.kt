@@ -31,13 +31,14 @@ class DiaryService(
             diaryRepository.save(Diary(
                 musicTitle = "musicTitle${it}",
                 youtubeLink = "youtubeLink${it}",
-                musicThumbnailImage = "musicThumbnailImage${it}",
+                webViewURL = "webViewURL${it}",
                 musicPlayTime = 0.0,
                 title = "title${it}",
                 content = "content${it}",
                 writingDate = LocalDate.of(2021, it + 1, 1),
                 diaryType = DiaryType.YELLOW1,
-                emotion = Emotion.happy
+                emotion = Emotion.happy,
+                memberId = 1L
             ))
         }
 

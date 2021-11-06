@@ -19,8 +19,8 @@ data class CreateDiaryRequestDTO(
     @field:Length(min = 1, max = 30)
     val musicTitle: String,
 
-    @field:Length(min = 1, max = 200)
-    val musicThumbnailImage: String,
+    @field:Length(min = 1)
+    val webViewURL: String,
 
     val musicPlayTime: Double,
 
