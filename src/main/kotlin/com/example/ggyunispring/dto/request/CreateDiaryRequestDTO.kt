@@ -28,6 +28,12 @@ data class CreateDiaryRequestDTO(
     val title: String,
 
     @field:Length(min = 1, max = 100)
-    val content: String
+    val content: String,
+
+    @field:Length(min = 1)
+    val latitude: String,
+
+    @field:Length(min = 1)
+    val longitude: String,
 
 )

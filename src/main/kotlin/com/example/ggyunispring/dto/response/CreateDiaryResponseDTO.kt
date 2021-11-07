@@ -17,5 +17,7 @@ data class CreateDiaryResponseDTO(
     val musicPlayTime: Double = 0.0,
     val title: String = "",
     val content: String = "",
+    val latitude: String = "",
+    val longitude: String = "",
     val writingDate: LocalDate = LocalDate.MIN
 )
