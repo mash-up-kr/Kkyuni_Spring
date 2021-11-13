@@ -28,8 +28,8 @@ class Diary(
     @Enumerated(value = EnumType.STRING)
     val emotion:Emotion = Emotion.sad,
 
-//    @Embedded
-//    val createModifyTime: CreateModifyTime = CreateModifyTime()
+    @Embedded
+    val createModifyTime: CreateModifyTime = CreateModifyTime()
 ) {
 
     fun updateDiaryMemberId(memberId: Long) {
