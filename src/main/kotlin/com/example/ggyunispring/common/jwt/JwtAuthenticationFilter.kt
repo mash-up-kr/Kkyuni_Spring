@@ -4,6 +4,7 @@ import com.example.ggyunispring.common.enum.JWT.KEY_VALUE_EMPTY
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.web.filter.GenericFilterBean
 import javax.servlet.FilterChain
 import javax.servlet.ServletRequest
@@ -22,10 +23,15 @@ class JwtAuthenticationFilter(
             return
         }
 
-        if (jwtProvider.validateTokenIssuedDate(token)) {
-            val authentication: Authentication = jwtProvider.getAuthentication(token, userDetailsService)
-            SecurityContextHolder.getContext().authentication = authentication
-        } else {
+        try {
+            if (jwtProvider.validateTokenIssuedDate(token)) {
+                val authentication: Authentication = jwtProvider.getAuthentication(token, userDetailsService)
+                SecurityContextHolder.getContext().authentication = authentication
+            } else {
+                abnormalMessage(response)
+                return
+            }
+        } catch (e: Exception) {
             abnormalMessage(response)
             return
         }
