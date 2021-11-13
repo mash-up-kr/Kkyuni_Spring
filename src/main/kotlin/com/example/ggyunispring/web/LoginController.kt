@@ -4,12 +4,11 @@ import com.example.ggyunispring.dto.request.GoogleLoginRequestDTO
 import com.example.ggyunispring.dto.response.LoginResponseDTO
 import com.example.ggyunispring.dto.response.ResponseDTO
 import com.example.ggyunispring.service.LoginService
-import org.springframework.http.HttpStatus.*
+import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
-@CrossOrigin(origins = ["*"], allowedHeaders = ["*"])
 @RequestMapping("/api/v1/login")
 @RestController
 class LoginController(

@@ -15,7 +15,6 @@ import java.time.LocalDate
 import java.time.YearMonth
 import javax.validation.Valid
 
-@CrossOrigin(origins = ["*"], allowedHeaders = ["*"])
 @RequestMapping("/api/v1/diary")
 @RestController
 class DiaryController(
