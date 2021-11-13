@@ -52,9 +52,9 @@ class LoginService(
         // sub 값 기반 유저 정보 조회(없다면 가입)
         val findMember = findMemberInfo(sub)
         // JWT Token 생성
-        val token = jwtProvider.createToken(findMember.sub)
+        val token = jwtProvider.createToken(findMember.memberID.toString())
         // JWT Refresh Token 생성
-        val refreshToken = jwtProvider.createRefreshToken(findMember.sub)
+        val refreshToken = jwtProvider.createRefreshToken(findMember.memberID.toString())
         findMember.updateToken(token)
         findMember.updateRefreshToken(refreshToken)
         return modelMapper.map(findMember, LoginResponseDTO::class.java)
