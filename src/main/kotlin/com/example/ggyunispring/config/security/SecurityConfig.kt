@@ -2,16 +2,12 @@ package com.example.ggyunispring.config.security
 
 import com.example.ggyunispring.common.jwt.JwtAuthenticationFilter
 import com.example.ggyunispring.common.jwt.JwtProvider
-import org.springframework.context.annotation.Bean
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
-import org.springframework.web.cors.CorsConfiguration
-import org.springframework.web.cors.CorsConfigurationSource
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
 @EnableWebSecurity
 class SecurityConfig(
@@ -41,18 +37,4 @@ class SecurityConfig(
         http.formLogin().disable()
         http.addFilterBefore(JwtAuthenticationFilter(jwtProvider, userDetailsService), UsernamePasswordAuthenticationFilter::class.java)
     }
-
-    @Bean
-    fun corsConfigurationSource(): CorsConfigurationSource {
-        val config = CorsConfiguration()
-        config.addAllowedOrigin("*")
-        config.addAllowedMethod("*")
-        config.addAllowedHeader("*")
-        config.allowCredentials = true
-        config.maxAge = 3600L
-        val source = UrlBasedCorsConfigurationSource()
-        source.registerCorsConfiguration("/**", config)
-        return source
-    }
-
 }
