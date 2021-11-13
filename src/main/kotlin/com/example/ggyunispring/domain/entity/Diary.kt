@@ -2,11 +2,9 @@ package com.example.ggyunispring.domain.entity
 
 import com.example.ggyunispring.common.enum.DiaryType
 import com.example.ggyunispring.common.enum.Emotion
-import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDate
 import javax.persistence.*
 
-@EntityListeners(AuditingEntityListener::class)
 @Entity
 class Diary(
 
@@ -30,8 +28,8 @@ class Diary(
     @Enumerated(value = EnumType.STRING)
     val emotion:Emotion = Emotion.sad,
 
-    @Embedded
-    val createModifyTime: CreateModifyTime = CreateModifyTime()
+//    @Embedded
+//    val createModifyTime: CreateModifyTime = CreateModifyTime()
 ) {
 
     fun updateDiaryMemberId(memberId: Long) {
