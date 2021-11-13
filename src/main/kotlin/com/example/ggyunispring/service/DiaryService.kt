@@ -32,6 +32,7 @@ class DiaryService(
                 musicTitle = "musicTitle${it}",
                 youtubeLink = "youtubeLink${it}",
                 webViewURL = "webViewURL${it}",
+                musicThumbnailImageUrl = "www.gyunny.com",
                 musicPlayTime = 0.0,
                 title = "title${it}",
                 content = "content${it}",
