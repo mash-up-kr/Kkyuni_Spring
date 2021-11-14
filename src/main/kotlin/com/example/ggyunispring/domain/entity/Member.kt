@@ -1,18 +1,20 @@
 package com.example.ggyunispring.domain.entity
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import org.springframework.data.jpa.domain.support.AuditingEntityListener
+import javax.persistence.*
 
+@EntityListeners(AuditingEntityListener::class)
 @Entity
 class Member(
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val memberID: Long? = null,
     val sub: String,
     var token: String? = null,
-    var refreshToken: String? = null
+    var refreshToken: String? = null,
+
+    @Embedded
+    val createModifyTime: CreateModifyTime = CreateModifyTime()
 ) {
 
     fun updateToken(token: String) {
