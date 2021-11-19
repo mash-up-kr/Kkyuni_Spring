@@ -36,8 +36,6 @@ class LoginService(
     fun init() {
         val token = jwtProvider.createToken("1")
         val refreshToken = jwtProvider.createRefreshToken("1")
-        println(token)
-        println(refreshToken)
         memberRepository.save(Member(
             sub = "testSub",
             token = token,
