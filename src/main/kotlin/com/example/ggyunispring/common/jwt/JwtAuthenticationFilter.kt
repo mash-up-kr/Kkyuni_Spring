@@ -1,6 +1,5 @@
 package com.example.ggyunispring.common.jwt
 
-import com.example.ggyunispring.common.enum.JWT.KEY_VALUE_EMPTY
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -17,19 +16,14 @@ class JwtAuthenticationFilter(
 ): GenericFilterBean() {
     override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
         val token: String = jwtProvider.getTokenFromHeader(request as HttpServletRequest)
-        if (token == KEY_VALUE_EMPTY.name) {
-            abnormalMessage(response)
-            return
-        }
 
         try {
-            if (jwtProvider.validateTokenIssuedDate(token)) {
-                val authentication: Authentication = jwtProvider.getAuthentication(token, userDetailsService)
-                SecurityContextHolder.getContext().authentication = authentication
-            } else {
+            if (!jwtProvider.validateTokenIssuedDate(token)) {
                 abnormalMessage(response)
                 return
             }
+            val authentication: Authentication = jwtProvider.getAuthentication(token, userDetailsService)
+            SecurityContextHolder.getContext().authentication = authentication
         } catch (e: Exception) {
             abnormalMessage(response)
             return

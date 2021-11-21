@@ -5,5 +5,4 @@ data class LoginResponseDTO(
     val sub: String = "",
     var token: String = "",
     var refreshToken: String = ""
-) {
-}
+)
