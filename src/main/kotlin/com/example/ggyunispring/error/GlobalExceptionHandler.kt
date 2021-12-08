@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException
 
-/**
- * created by Gyunny 2021/10/03
- */
 @ControllerAdvice
 class GlobalExceptionHandler {
 

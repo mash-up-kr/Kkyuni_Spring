@@ -16,9 +16,6 @@ import java.time.LocalDate
 import java.time.YearMonth
 import javax.annotation.PostConstruct
 
-/**
- * created by Gyunny 2021/10/02
- */
 @Service
 class DiaryService(
     private val diaryRepository: DiaryRepository,

@@ -4,9 +4,6 @@ import com.example.ggyunispring.domain.entity.Diary
 import org.springframework.data.repository.CrudRepository
 import java.time.LocalDate
 
-/**
- * created by Gyunny 2021/10/02
- */
 interface DiaryRepository : CrudRepository<Diary, Long> {
 
     fun findAllByWritingDateBetweenAndMemberId(startDayOfMonth: LocalDate, endDayOfMonth: LocalDate, memberId: Long): List<Diary>

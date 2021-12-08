@@ -1,8 +1,5 @@
 package com.example.ggyunispring.error
 
-/**
- * created by Gyunny 2021/10/03
- */
 enum class ErrorType(
     val statusCode: Int,
     val responseMessage: String

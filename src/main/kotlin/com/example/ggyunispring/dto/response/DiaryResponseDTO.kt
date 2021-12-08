@@ -4,9 +4,6 @@ import com.example.ggyunispring.common.enum.DiaryType
 import com.example.ggyunispring.common.enum.Emotion
 import java.time.LocalDate
 
-/**
- * created by Gyunny 2021/10/02
- */
 data class DiaryResponseDTO(
     val diaryID: Long = 0L,
     val youtubeLink: String = "",
