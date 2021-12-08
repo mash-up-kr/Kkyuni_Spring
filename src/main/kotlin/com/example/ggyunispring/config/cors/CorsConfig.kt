@@ -9,8 +9,8 @@ class CorsConfig : WebMvcConfigurer {
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/api/v1/**")
 //            .allowedOrigins("*")
-            .allowedOriginPatterns("*")
-            .allowedMethods("GET", "POST", "PUT", "DELETE")
+            .allowedOriginPatterns("netlify.app")
+            .allowedMethods("OPTIONS", "GET", "POST", "PUT", "DELETE")
             .allowedHeaders("Authorization")
             .allowCredentials(true).maxAge(3600)
     }
