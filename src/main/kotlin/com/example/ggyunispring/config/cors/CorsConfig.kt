@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 class CorsConfig : WebMvcConfigurer {
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/api/v1/**")
-//            .allowedOrigins("*")
             .allowedOriginPatterns("https://compassionate-wing-0abef6.netlify.app/", "http://localhost:5050")
             .allowedMethods("OPTIONS", "GET", "POST", "PUT", "DELETE")
             .allowedHeaders("Authorization")
