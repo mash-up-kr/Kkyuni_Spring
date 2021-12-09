@@ -6,7 +6,7 @@ import java.time.LocalDate
 
 data class CreateDiaryResponseDTO(
     val diaryID: Long = 0L,
-    val emotion: Emotion = Emotion.sad,
+    val emotion: Emotion = Emotion.SAD,
     val diaryType: DiaryType = DiaryType.YELLOW1,
     val musicTitle: String = "",
     val youtubeLink: String = "",
