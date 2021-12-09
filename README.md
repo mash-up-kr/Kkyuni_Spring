@@ -8,13 +8,13 @@
 
 ## 🛠 사용한 기술 스택
 
-![스크린샷 2021-12-09 오후 8 03 24](https://user-images.githubusercontent.com/45676906/145384849-80ba368a-5c14-46ca-ad73-bc76b2d52b34.png)
+![스크린샷 2021-12-09 오후 8 34 59](https://user-images.githubusercontent.com/45676906/145389324-45194c6a-6b19-40c4-b863-b8326523a11f.png)
 
 <br>
 
 ## [Swagger API 명세서](https://api.gyunny.site/swagger-ui/)
 
-![스크린샷 2021-12-09 오후 8 27 10](https://user-images.githubusercontent.com/45676906/145388196-6c7192d9-52de-4ad5-beee-f6da80d324d4.png)
+<img width="686" alt="스크린샷 2021-12-09 오후 8 33 00" src="https://user-images.githubusercontent.com/45676906/145389033-1c5c0fca-9a9a-468f-8978-62c9bf2d8c49.png">
 
 <br>
 
