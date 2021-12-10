@@ -15,7 +15,7 @@ class Diary(
     val musicTitle: String = "",
     val youtubeLink: String = "",
     val webViewURL: String = "",
-    val musicThumbnailImageUrl: String,
+    val musicThumbnailImageUrl: String = "",
     val musicPlayTime: Double = 0.0,
     val title: String = "",
     val content: String = "",
