@@ -1,5 +1,6 @@
 package com.example.ggyunispring.common.jwt
 
+import org.springframework.http.HttpMethod
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -33,11 +34,12 @@ class JwtAuthenticationFilter(
     }
 
     private fun abnormalMessage(request: ServletRequest, response: ServletResponse) {
+        val httpServletRequest = request as HttpServletRequest
         val httpServletResponse = response as HttpServletResponse
-        httpServletResponse.status = 401
+        httpServletResponse.status = if(HttpMethod.OPTIONS.toString() == httpServletRequest.method) 200 else 401
         httpServletResponse.contentType = "application/json"
         httpServletResponse.characterEncoding = "utf8"
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*")
+        httpServletResponse.setHeader("Access-Control-Allow-Origin", "https://compassionate-wing-0abef6.netlify.app")
         httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true")
         httpServletResponse.writer.write("비정상 메시지")
     }
