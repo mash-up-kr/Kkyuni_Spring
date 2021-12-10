@@ -33,8 +33,8 @@ jobs:
           GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DATABASE_ID : ${{ secrets.DATABSE_ID }}
-          DATABASE_PASSWORD : ${{ secrets.DATABASE_PASSWORD }}
+          DATABASE_ID: ${{ secrets.DATABASE_ID }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
 
       - name: Make zip file
         run: zip -r ./$GITHUB_SHA.zip .
