@@ -19,24 +19,26 @@ class JwtAuthenticationFilter(
 
         try {
             if (!jwtProvider.validateTokenIssuedDate(token)) {
-                abnormalMessage(response)
+                abnormalMessage(request, response)
                 return
             }
             val authentication: Authentication = jwtProvider.getAuthentication(token, userDetailsService)
             SecurityContextHolder.getContext().authentication = authentication
         } catch (e: Exception) {
-            abnormalMessage(response)
+            abnormalMessage(request, response)
             return
         }
 
         chain!!.doFilter(request, response)
     }
 
-    private fun abnormalMessage(response: ServletResponse) {
+    private fun abnormalMessage(request: ServletRequest, response: ServletResponse) {
         val httpServletResponse = response as HttpServletResponse
         httpServletResponse.status = 401
         httpServletResponse.contentType = "application/json"
         httpServletResponse.characterEncoding = "utf8"
+        httpServletResponse.addHeader("Access-Control-Allow-Origin", "https://compassionate-wing-0abef6.netlify.app")
+        httpServletResponse.addHeader("Access-Control-Allow-Credentials", "true")
         httpServletResponse.writer.write("비정상 메시지")
     }
 }
