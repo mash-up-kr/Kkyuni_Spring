@@ -31,17 +31,6 @@ class LoginService(
     @Value("\${ggyuni.google.id}")
     private lateinit var clientId: String
 
-//    @PostConstruct
-//    fun init() {
-//        val token = jwtProvider.createToken("1")
-//        val refreshToken = jwtProvider.createRefreshToken("1")
-//        memberRepository.save(Member(
-//            sub = "testSub",
-//            token = token,
-//            refreshToken = refreshToken)
-//        )
-//    }
-
     @Transactional
     fun googleLogin(googleLoginRequestDTO: GoogleLoginRequestDTO): LoginResponseDTO {
         // Google IdToken 검증 및 sub 값 추출
