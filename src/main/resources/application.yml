@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:ggyuni-db
-    username: sa
-    password:
+    url: jdbc:mysql://${DATABASE_URL}?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8&mysqlEncoding=utf8&serverTimezone=UTC
+    username: ${DATABASE_ID}
+    password: ${DATABASE_PASSWORD}
 
   h2:
     console:
@@ -21,7 +21,7 @@ spring:
 
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
 
 ggyuni:
   google:

@@ -38,6 +38,7 @@ dependencies {
     implementation("com.google.api-client:google-api-client:1.31.5")
     implementation("com.google.api-client:google-api-client-jackson2:1.30.10")
     runtimeOnly("com.h2database:h2")
+    runtimeOnly("mysql:mysql-connector-java:8.0.15")
 
     implementation("org.springframework.boot:spring-boot-starter-security")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

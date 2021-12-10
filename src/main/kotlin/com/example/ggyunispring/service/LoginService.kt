@@ -19,7 +19,6 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 import java.util.*
-import javax.annotation.PostConstruct
 import javax.transaction.Transactional
 
 @Service
@@ -32,16 +31,16 @@ class LoginService(
     @Value("\${ggyuni.google.id}")
     private lateinit var clientId: String
 
-    @PostConstruct
-    fun init() {
-        val token = jwtProvider.createToken("1")
-        val refreshToken = jwtProvider.createRefreshToken("1")
-        memberRepository.save(Member(
-            sub = "testSub",
-            token = token,
-            refreshToken = refreshToken)
-        )
-    }
+//    @PostConstruct
+//    fun init() {
+//        val token = jwtProvider.createToken("1")
+//        val refreshToken = jwtProvider.createRefreshToken("1")
+//        memberRepository.save(Member(
+//            sub = "testSub",
+//            token = token,
+//            refreshToken = refreshToken)
+//        )
+//    }
 
     @Transactional
     fun googleLogin(googleLoginRequestDTO: GoogleLoginRequestDTO): LoginResponseDTO {
