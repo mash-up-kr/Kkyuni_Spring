@@ -39,6 +39,8 @@ class JwtAuthenticationFilter(
         httpServletResponse.status = if(HttpMethod.OPTIONS.toString() == httpServletRequest.method) 200 else 401
         httpServletResponse.contentType = "application/json"
         httpServletResponse.characterEncoding = "utf8"
+        httpServletResponse.addHeader("Access-Control-Allow-Headers", "Authorization")
+        httpServletResponse.addHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT, DELETE")
         httpServletResponse.setHeader("Access-Control-Allow-Origin", "https://compassionate-wing-0abef6.netlify.app")
         httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true")
         httpServletResponse.writer.write("비정상 메시지")
