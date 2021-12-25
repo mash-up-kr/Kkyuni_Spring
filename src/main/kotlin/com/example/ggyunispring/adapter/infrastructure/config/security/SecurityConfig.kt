@@ -1,7 +1,7 @@
-package com.example.ggyunispring.config.security
+package com.example.ggyunispring.adapter.infrastructure.config.security
 
-import com.example.ggyunispring.common.jwt.JwtAuthenticationFilter
-import com.example.ggyunispring.common.jwt.JwtProvider
+import com.example.ggyunispring.adapter.infrastructure.jwt.JwtAuthenticationFilter
+import com.example.ggyunispring.adapter.infrastructure.jwt.JwtProvider
 import com.example.ggyunispring.domain.exception.ExceptionResponse
 import com.example.ggyunispring.domain.exception.ExceptionType
 import com.fasterxml.jackson.databind.ObjectMapper

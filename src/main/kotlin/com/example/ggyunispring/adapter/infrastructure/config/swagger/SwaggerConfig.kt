@@ -1,4 +1,4 @@
-package com.example.ggyunispring.config.swagger
+package com.example.ggyunispring.adapter.infrastructure.config.swagger
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

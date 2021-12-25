@@ -1,4 +1,4 @@
-package com.example.ggyunispring.dto.request
+package com.example.ggyunispring.adapter.dto.request
 
 import javax.validation.constraints.NotBlank
 

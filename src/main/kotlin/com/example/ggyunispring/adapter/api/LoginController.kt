@@ -1,9 +1,9 @@
-package com.example.ggyunispring.web
+package com.example.ggyunispring.adapter.api
 
-import com.example.ggyunispring.dto.request.GoogleLoginRequestDTO
-import com.example.ggyunispring.dto.response.LoginResponseDTO
-import com.example.ggyunispring.dto.response.ResponseDTO
-import com.example.ggyunispring.service.LoginService
+import com.example.ggyunispring.adapter.dto.request.GoogleLoginRequestDTO
+import com.example.ggyunispring.adapter.dto.response.LoginResponseDTO
+import com.example.ggyunispring.adapter.dto.response.ResponseDTO
+import com.example.ggyunispring.application.LoginService
 import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

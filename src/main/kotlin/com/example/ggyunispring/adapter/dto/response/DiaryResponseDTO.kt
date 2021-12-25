@@ -1,4 +1,4 @@
-package com.example.ggyunispring.dto.response
+package com.example.ggyunispring.adapter.dto.response
 
 import com.example.ggyunispring.domain.enum.DiaryType
 import com.example.ggyunispring.domain.enum.Emotion

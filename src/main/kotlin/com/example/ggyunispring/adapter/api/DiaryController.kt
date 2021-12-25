@@ -1,10 +1,10 @@
-package com.example.ggyunispring.web
+package com.example.ggyunispring.adapter.api
 
-import com.example.ggyunispring.dto.request.CreateDiaryRequestDTO
-import com.example.ggyunispring.dto.response.CreateDiaryResponseDTO
-import com.example.ggyunispring.dto.response.DiaryResponseDTO
-import com.example.ggyunispring.dto.response.ResponseDTO
-import com.example.ggyunispring.service.DiaryService
+import com.example.ggyunispring.adapter.dto.request.CreateDiaryRequestDTO
+import com.example.ggyunispring.adapter.dto.response.CreateDiaryResponseDTO
+import com.example.ggyunispring.adapter.dto.response.DiaryResponseDTO
+import com.example.ggyunispring.adapter.dto.response.ResponseDTO
+import com.example.ggyunispring.application.DiaryService
 import io.swagger.annotations.ApiOperation
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.http.HttpStatus.CREATED

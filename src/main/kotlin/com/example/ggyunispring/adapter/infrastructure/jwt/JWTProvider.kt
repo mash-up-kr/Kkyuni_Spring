@@ -1,4 +1,4 @@
-package com.example.ggyunispring.common.jwt
+package com.example.ggyunispring.adapter.infrastructure.jwt
 
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws

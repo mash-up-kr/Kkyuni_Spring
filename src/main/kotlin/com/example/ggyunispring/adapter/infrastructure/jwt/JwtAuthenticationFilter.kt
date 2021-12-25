@@ -1,4 +1,4 @@
-package com.example.ggyunispring.common.jwt
+package com.example.ggyunispring.adapter.infrastructure.jwt
 
 import com.example.ggyunispring.domain.exception.ExceptionResponse
 import com.example.ggyunispring.domain.exception.ExceptionType

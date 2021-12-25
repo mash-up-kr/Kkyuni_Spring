@@ -1,4 +1,4 @@
-package com.example.ggyunispring.dto.response
+package com.example.ggyunispring.adapter.dto.response
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
