@@ -1,7 +1,7 @@
-package com.example.ggyunispring.exception
+package com.example.ggyunispring.domain.exception
 
-import com.example.ggyunispring.exception.member.GoogleIdTokenException
-import com.example.ggyunispring.exception.member.InvalidJwtTokenException
+import com.example.ggyunispring.domain.exception.member.GoogleIdTokenException
+import com.example.ggyunispring.domain.exception.member.InvalidJwtTokenException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice

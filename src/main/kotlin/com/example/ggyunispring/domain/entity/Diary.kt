@@ -1,7 +1,7 @@
 package com.example.ggyunispring.domain.entity
 
-import com.example.ggyunispring.common.enum.DiaryType
-import com.example.ggyunispring.common.enum.Emotion
+import com.example.ggyunispring.domain.enum.DiaryType
+import com.example.ggyunispring.domain.enum.Emotion
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDate
 import javax.persistence.*

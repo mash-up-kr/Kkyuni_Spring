@@ -1,7 +1,7 @@
 package com.example.ggyunispring.dto.request
 
-import com.example.ggyunispring.common.enum.DiaryType
-import com.example.ggyunispring.common.enum.Emotion
+import com.example.ggyunispring.domain.enum.DiaryType
+import com.example.ggyunispring.domain.enum.Emotion
 import org.hibernate.validator.constraints.Length
 import java.time.LocalDate
 import javax.validation.constraints.NotNull

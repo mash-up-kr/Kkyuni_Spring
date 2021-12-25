@@ -2,8 +2,8 @@ package com.example.ggyunispring.config.security
 
 import com.example.ggyunispring.common.jwt.JwtAuthenticationFilter
 import com.example.ggyunispring.common.jwt.JwtProvider
-import com.example.ggyunispring.exception.ExceptionResponse
-import com.example.ggyunispring.exception.ExceptionType
+import com.example.ggyunispring.domain.exception.ExceptionResponse
+import com.example.ggyunispring.domain.exception.ExceptionType
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus

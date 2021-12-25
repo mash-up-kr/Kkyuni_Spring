@@ -1,4 +1,4 @@
-package com.example.ggyunispring.exception
+package com.example.ggyunispring.domain.exception
 
 data class ExceptionResponse(
     val status: Int,
