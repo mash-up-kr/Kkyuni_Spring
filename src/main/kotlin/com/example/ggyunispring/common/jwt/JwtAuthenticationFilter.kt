@@ -1,6 +1,11 @@
 package com.example.ggyunispring.common.jwt
 
-import org.springframework.http.HttpMethod
+import com.example.ggyunispring.error.ExceptionResponse
+import com.example.ggyunispring.error.ExceptionType
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.springframework.http.HttpHeaders.AUTHORIZATION
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -12,37 +17,36 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 class JwtAuthenticationFilter(
+    private val objectMapper: ObjectMapper,
     private val jwtProvider: JwtProvider,
     private val userDetailsService: UserDetailsService
 ): GenericFilterBean() {
     override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
-        val token: String = jwtProvider.getTokenFromHeader(request as HttpServletRequest)
+        val accessToken: String = resolveToken(request as HttpServletRequest)
 
         try {
-            if (!jwtProvider.validateTokenIssuedDate(token)) {
-                abnormalMessage(request, response)
-                return
+            if (!jwtProvider.validateTokenIssuedDate(accessToken)) {
+                val authentication: Authentication = jwtProvider.getAuthentication(accessToken, userDetailsService)
+                SecurityContextHolder.getContext().authentication = authentication
             }
-            val authentication: Authentication = jwtProvider.getAuthentication(token, userDetailsService)
-            SecurityContextHolder.getContext().authentication = authentication
-        } catch (e: Exception) {
-            abnormalMessage(request, response)
-            return
-        }
 
-        chain!!.doFilter(request, response)
+            chain!!.doFilter(request, response)
+        } catch (e: Exception) {
+            abnormalMessage(response as HttpServletResponse)
+        }
     }
 
-    private fun abnormalMessage(request: ServletRequest, response: ServletResponse) {
-        val httpServletRequest = request as HttpServletRequest
-        val httpServletResponse = response as HttpServletResponse
-        httpServletResponse.status = if(HttpMethod.OPTIONS.toString() == httpServletRequest.method) 200 else 401
-        httpServletResponse.contentType = "application/json"
-        httpServletResponse.characterEncoding = "utf8"
-        httpServletResponse.addHeader("Access-Control-Allow-Headers", "Authorization")
-        httpServletResponse.addHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT, DELETE")
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "https://compassionate-wing-0abef6.netlify.app")
-        httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true")
-        httpServletResponse.writer.write("비정상 메시지")
+    private fun resolveToken(request: HttpServletRequest): String {
+        val accessToken = request.getHeader(AUTHORIZATION) ?: return "EMPTY"
+        return accessToken.replace("Bearer", "").trim()
+    }
+
+    private fun abnormalMessage(response: HttpServletResponse) {
+        response.status = HttpStatus.UNAUTHORIZED.value()
+        response.contentType = MediaType.APPLICATION_JSON_VALUE
+        objectMapper.writeValue(
+            response.outputStream,
+            ExceptionResponse.of(ExceptionType.UNAUTHORIZED)
+        )
     }
 }

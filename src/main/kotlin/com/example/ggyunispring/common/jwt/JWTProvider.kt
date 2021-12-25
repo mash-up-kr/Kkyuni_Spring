@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
 import java.util.*
 import javax.annotation.PostConstruct
-import javax.servlet.http.HttpServletRequest
 
 @Component
 class JwtProvider {
@@ -21,10 +20,6 @@ class JwtProvider {
 
     private val tokenValidTime: Long = 30 * 24 * 60 * 60 * 1000L
     private val refreshTokenValidTime: Long = 365 * 24 * 60 * 60 * 1000L
-
-    companion object {
-        const val HEADER_NAME: String = "Authorization"
-    }
 
     @PostConstruct
     fun init() {
@@ -64,11 +59,6 @@ class JwtProvider {
 
     fun getClaims(token: String): Jws<Claims> {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token)
-    }
-
-    fun getTokenFromHeader(request: HttpServletRequest): String {
-        val accessToken = request.getHeader(HEADER_NAME) ?: return "EMPTY"
-        return accessToken.replace("Bearer", "").trim()
     }
 
     fun validateTokenIssuedDate(token: String): Boolean {

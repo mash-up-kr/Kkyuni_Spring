@@ -3,7 +3,10 @@ package com.example.ggyunispring.config.security
 import com.example.ggyunispring.common.jwt.JwtAuthenticationFilter
 import com.example.ggyunispring.common.jwt.JwtProvider
 import com.example.ggyunispring.dto.response.ResponseDTO
+import com.example.ggyunispring.error.ExceptionResponse
+import com.example.ggyunispring.error.ExceptionType
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.security.access.AccessDeniedException
@@ -40,14 +43,17 @@ class SecurityConfig(
     }
 
     override fun configure(http: HttpSecurity) {
-        http.authorizeRequests().antMatchers("/**").authenticated()
+        http.authorizeRequests()
+            .mvcMatchers(HttpMethod.OPTIONS, "/**").permitAll() // CORS Preflight
+            .antMatchers("/**").authenticated()
+
         http.httpBasic().disable()
             .cors().disable()
             .csrf().disable()
             .formLogin().disable()
             .sessionManagement().disable()
 
-        http.addFilterBefore(JwtAuthenticationFilter(jwtProvider, userDetailsService), UsernamePasswordAuthenticationFilter::class.java)
+        http.addFilterBefore(JwtAuthenticationFilter(objectMapper, jwtProvider, userDetailsService), UsernamePasswordAuthenticationFilter::class.java)
 
         http.exceptionHandling()
             .authenticationEntryPoint { request: HttpServletRequest?, response: HttpServletResponse, authException: AuthenticationException? ->
@@ -55,7 +61,7 @@ class SecurityConfig(
                 response.contentType = MediaType.APPLICATION_JSON_VALUE
                 objectMapper.writeValue(
                     response.outputStream,
-                    ResponseDTO.failure<Unit>(HttpStatus.UNAUTHORIZED)
+                    ExceptionResponse.of(ExceptionType.UNAUTHORIZED)
                 )
             }
             .accessDeniedHandler { request: HttpServletRequest?, response: HttpServletResponse, accessDeniedException: AccessDeniedException? ->
@@ -63,7 +69,7 @@ class SecurityConfig(
                 response.contentType = MediaType.APPLICATION_JSON_VALUE
                 objectMapper.writeValue(
                     response.outputStream,
-                    ResponseDTO.failure<Unit>(HttpStatus.FORBIDDEN)
+                    ExceptionResponse.of(ExceptionType.FORBIDDEN)
                 )
             }
     }
