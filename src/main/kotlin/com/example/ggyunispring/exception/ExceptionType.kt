@@ -1,4 +1,4 @@
-package com.example.ggyunispring.error
+package com.example.ggyunispring.exception
 
 enum class ExceptionType(
     val statusCode: Int,

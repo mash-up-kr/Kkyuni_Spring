@@ -1,7 +1,7 @@
-package com.example.ggyunispring.error
+package com.example.ggyunispring.exception
 
-import com.example.ggyunispring.error.member.GoogleIdTokenException
-import com.example.ggyunispring.error.member.InvalidJwtTokenException
+import com.example.ggyunispring.exception.member.GoogleIdTokenException
+import com.example.ggyunispring.exception.member.InvalidJwtTokenException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -16,8 +16,8 @@ class GlobalExceptionHandler {
      */
     @ExceptionHandler(GoogleIdTokenException::class)
     fun invalidGoogleIdTokenException(): ResponseEntity<ExceptionResponse> {
-        val errorType = ExceptionType.INVALID_GOOGLE_ID_TOKEN
-        return ResponseEntity(ExceptionResponse.of(errorType), HttpStatus.BAD_REQUEST)
+        val exceptionType = ExceptionType.INVALID_GOOGLE_ID_TOKEN
+        return ResponseEntity(ExceptionResponse.of(exceptionType), HttpStatus.BAD_REQUEST)
     }
 
     /**
@@ -25,14 +25,14 @@ class GlobalExceptionHandler {
      */
     @ExceptionHandler(MethodArgumentTypeMismatchException::class)
     fun methodArgumentTypeMisMatchException(): ResponseEntity<ExceptionResponse> {
-        val errorType = ExceptionType.INVALID_DATE_INPUT_VALUE
-        return ResponseEntity(ExceptionResponse.of(errorType), HttpStatus.BAD_REQUEST)
+        val exceptionType = ExceptionType.INVALID_DATE_INPUT_VALUE
+        return ResponseEntity(ExceptionResponse.of(exceptionType), HttpStatus.BAD_REQUEST)
     }
 
     @ExceptionHandler(InvalidJwtTokenException::class)
     fun invalidJwtTokenException(): ResponseEntity<ExceptionResponse> {
-        val errorType = ExceptionType.UNAUTHORIZED
-        return ResponseEntity(ExceptionResponse.of(errorType), HttpStatus.BAD_REQUEST)
+        val exceptionType = ExceptionType.UNAUTHORIZED
+        return ResponseEntity(ExceptionResponse.of(exceptionType), HttpStatus.BAD_REQUEST)
     }
 
 }

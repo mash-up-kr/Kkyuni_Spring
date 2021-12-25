@@ -1,4 +1,4 @@
-package com.example.ggyunispring.error.member
+package com.example.ggyunispring.exception.member
 
 class InvalidJwtTokenException: RuntimeException() {
 }

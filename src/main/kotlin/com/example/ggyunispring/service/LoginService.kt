@@ -5,8 +5,8 @@ import com.example.ggyunispring.domain.entity.Member
 import com.example.ggyunispring.domain.repository.MemberRepository
 import com.example.ggyunispring.dto.request.GoogleLoginRequestDTO
 import com.example.ggyunispring.dto.response.LoginResponseDTO
-import com.example.ggyunispring.error.member.GoogleIdTokenException
-import com.example.ggyunispring.error.member.InvalidJwtTokenException
+import com.example.ggyunispring.exception.member.GoogleIdTokenException
+import com.example.ggyunispring.exception.member.InvalidJwtTokenException
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory

@@ -1,7 +1,7 @@
 package com.example.ggyunispring.common.jwt
 
-import com.example.ggyunispring.error.ExceptionResponse
-import com.example.ggyunispring.error.ExceptionType
+import com.example.ggyunispring.exception.ExceptionResponse
+import com.example.ggyunispring.exception.ExceptionType
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.http.HttpHeaders.AUTHORIZATION
 import org.springframework.http.HttpStatus
