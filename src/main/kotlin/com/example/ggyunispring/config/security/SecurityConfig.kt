@@ -2,15 +2,24 @@ package com.example.ggyunispring.config.security
 
 import com.example.ggyunispring.common.jwt.JwtAuthenticationFilter
 import com.example.ggyunispring.common.jwt.JwtProvider
+import com.example.ggyunispring.dto.response.ResponseDTO
+import com.fasterxml.jackson.databind.ObjectMapper
+import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
+import org.springframework.security.access.AccessDeniedException
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletResponse
 
 @EnableWebSecurity
 class SecurityConfig(
+    private val objectMapper: ObjectMapper,
     private val jwtProvider: JwtProvider,
     private val userDetailsService: UserDetailsService
 ) : WebSecurityConfigurerAdapter() {
@@ -26,15 +35,36 @@ class SecurityConfig(
             "/webjars/**",
             "/api/v1/login/google",
             "/api/v1/login/refresh",
-            "/error")
+            "/error"
+        )
     }
 
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests().antMatchers("/**").authenticated()
         http.httpBasic().disable()
-        http.cors().disable()
-        http.csrf().disable()
-        http.formLogin().disable()
+            .cors().disable()
+            .csrf().disable()
+            .formLogin().disable()
+            .sessionManagement().disable()
+
         http.addFilterBefore(JwtAuthenticationFilter(jwtProvider, userDetailsService), UsernamePasswordAuthenticationFilter::class.java)
+
+        http.exceptionHandling()
+            .authenticationEntryPoint { request: HttpServletRequest?, response: HttpServletResponse, authException: AuthenticationException? ->
+                response.status = HttpStatus.UNAUTHORIZED.value()
+                response.contentType = MediaType.APPLICATION_JSON_VALUE
+                objectMapper.writeValue(
+                    response.outputStream,
+                    ResponseDTO.failure<Unit>(HttpStatus.UNAUTHORIZED)
+                )
+            }
+            .accessDeniedHandler { request: HttpServletRequest?, response: HttpServletResponse, accessDeniedException: AccessDeniedException? ->
+                response.status = HttpStatus.FORBIDDEN.value()
+                response.contentType = MediaType.APPLICATION_JSON_VALUE
+                objectMapper.writeValue(
+                    response.outputStream,
+                    ResponseDTO.failure<Unit>(HttpStatus.FORBIDDEN)
+                )
+            }
     }
 }

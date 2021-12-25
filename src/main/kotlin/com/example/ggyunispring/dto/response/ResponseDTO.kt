@@ -9,8 +9,8 @@ class ResponseDTO {
             return ResponseEntity.status(code.value()).body(t)
         }
 
-        fun <T> error(t: T): ResponseEntity<T> {
-            return ResponseEntity.status(500).body(t)
+        fun <T> failure(code: HttpStatus): ResponseEntity<T> {
+            return ResponseEntity.status(code.value()).body(null);
         }
     }
 }
