@@ -1,7 +1,6 @@
-package com.example.ggyunispring.domain.entity
+package com.example.ggyunispring.domain.diary
 
-import com.example.ggyunispring.domain.enum.DiaryType
-import com.example.ggyunispring.domain.enum.Emotion
+import com.example.ggyunispring.domain.CreateModifyTime
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDate
 import javax.persistence.*
@@ -28,7 +27,7 @@ class Diary(
     val diaryType: DiaryType = DiaryType.YELLOW1,
 
     @Enumerated(value = EnumType.STRING)
-    val emotion:Emotion = Emotion.SAD,
+    val emotion: Emotion = Emotion.SAD,
 
     @Embedded
     val createModifyTime: CreateModifyTime = CreateModifyTime()

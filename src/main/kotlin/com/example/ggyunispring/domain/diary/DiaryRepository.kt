@@ -1,6 +1,6 @@
-package com.example.ggyunispring.domain.repository
+package com.example.ggyunispring.domain.diary
 
-import com.example.ggyunispring.domain.entity.Diary
+import com.example.ggyunispring.domain.diary.Diary
 import org.springframework.data.repository.CrudRepository
 import java.time.LocalDate
 

@@ -1,5 +1,6 @@
-package com.example.ggyunispring.domain.entity
+package com.example.ggyunispring.domain.member
 
+import com.example.ggyunispring.domain.CreateModifyTime
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import javax.persistence.*
 

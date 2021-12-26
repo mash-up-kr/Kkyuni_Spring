@@ -1,7 +1,7 @@
 package com.example.ggyunispring.application
 
-import com.example.ggyunispring.domain.entity.Diary
-import com.example.ggyunispring.domain.repository.DiaryRepository
+import com.example.ggyunispring.domain.diary.Diary
+import com.example.ggyunispring.domain.diary.DiaryRepository
 import com.example.ggyunispring.adapter.dto.request.CreateDiaryRequestDTO
 import com.example.ggyunispring.adapter.dto.response.CreateDiaryResponseDTO
 import com.example.ggyunispring.adapter.dto.response.DiaryResponseDTO

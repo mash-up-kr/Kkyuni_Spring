@@ -1,7 +1,7 @@
 package com.example.ggyunispring.adapter.dto.response
 
-import com.example.ggyunispring.domain.enum.DiaryType
-import com.example.ggyunispring.domain.enum.Emotion
+import com.example.ggyunispring.domain.diary.DiaryType
+import com.example.ggyunispring.domain.diary.Emotion
 import java.time.LocalDate
 
 data class CreateDiaryResponseDTO(

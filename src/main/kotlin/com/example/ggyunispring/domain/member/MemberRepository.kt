@@ -1,6 +1,6 @@
-package com.example.ggyunispring.domain.repository
+package com.example.ggyunispring.domain.member
 
-import com.example.ggyunispring.domain.entity.Member
+import com.example.ggyunispring.domain.member.Member
 import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.query.Param
 
