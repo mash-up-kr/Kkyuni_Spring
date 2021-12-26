@@ -1,4 +1,4 @@
-package com.example.ggyunispring.adapter.dto.response
+package com.example.ggyunispring.adapter.api.member
 
 data class LoginResponseDTO(
     val memberID: Long = 0L,

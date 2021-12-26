@@ -1,8 +1,6 @@
-package com.example.ggyunispring.adapter.api
+package com.example.ggyunispring.adapter.api.member
 
-import com.example.ggyunispring.adapter.dto.request.GoogleLoginRequestDTO
-import com.example.ggyunispring.adapter.dto.response.LoginResponseDTO
-import com.example.ggyunispring.adapter.dto.response.ResponseDTO
+import com.example.ggyunispring.adapter.ResponseDTO
 import com.example.ggyunispring.application.LoginService
 import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity

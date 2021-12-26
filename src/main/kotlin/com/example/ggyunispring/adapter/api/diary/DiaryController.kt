@@ -1,9 +1,6 @@
-package com.example.ggyunispring.adapter.api
+package com.example.ggyunispring.adapter.api.diary
 
-import com.example.ggyunispring.adapter.dto.request.CreateDiaryRequestDTO
-import com.example.ggyunispring.adapter.dto.response.CreateDiaryResponseDTO
-import com.example.ggyunispring.adapter.dto.response.DiaryResponseDTO
-import com.example.ggyunispring.adapter.dto.response.ResponseDTO
+import com.example.ggyunispring.adapter.ResponseDTO
 import com.example.ggyunispring.application.DiaryService
 import io.swagger.annotations.ApiOperation
 import org.springframework.format.annotation.DateTimeFormat

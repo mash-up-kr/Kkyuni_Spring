@@ -1,4 +1,4 @@
-package com.example.ggyunispring.adapter.dto.request
+package com.example.ggyunispring.adapter.api.diary
 
 import com.example.ggyunispring.domain.diary.DiaryType
 import com.example.ggyunispring.domain.diary.Emotion

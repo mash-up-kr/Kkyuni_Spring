@@ -3,8 +3,8 @@ package com.example.ggyunispring.application
 import com.example.ggyunispring.adapter.infrastructure.jwt.JwtProvider
 import com.example.ggyunispring.domain.member.Member
 import com.example.ggyunispring.domain.member.MemberRepository
-import com.example.ggyunispring.adapter.dto.request.GoogleLoginRequestDTO
-import com.example.ggyunispring.adapter.dto.response.LoginResponseDTO
+import com.example.ggyunispring.adapter.api.member.GoogleLoginRequestDTO
+import com.example.ggyunispring.adapter.api.member.LoginResponseDTO
 import com.example.ggyunispring.domain.exception.member.GoogleIdTokenException
 import com.example.ggyunispring.domain.exception.member.InvalidJwtTokenException
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier
