@@ -15,16 +15,16 @@ class LoginController(
 
     @PostMapping("/google")
     fun googleLogin(@Valid @RequestBody googleLoginRequestDTO: GoogleLoginRequestDTO): ResponseEntity<LoginResponseDTO> {
-        return ResponseDTO.of(OK, loginService.googleLogin(googleLoginRequestDTO))
+        return ResponseDTO.success(OK, loginService.googleLogin(googleLoginRequestDTO))
     }
 
     @PostMapping
     fun login(): ResponseEntity<LoginResponseDTO> {
-        return ResponseDTO.of(OK, loginService.login())
+        return ResponseDTO.success(OK, loginService.login())
     }
 
     @GetMapping("/refresh")
     fun updateToken(@RequestHeader("token") refreshToken: String): ResponseEntity<LoginResponseDTO> {
-        return ResponseDTO.of(OK, loginService.updateToken(refreshToken))
+        return ResponseDTO.success(OK, loginService.updateToken(refreshToken))
     }
 }
