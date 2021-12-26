@@ -1,6 +1,6 @@
 package com.example.ggyunispring.adapter.infrastructure.jwt
 
-import com.example.ggyunispring.domain.exception.ExceptionResponse
+import com.example.ggyunispring.adapter.ExceptionResponse
 import com.example.ggyunispring.domain.exception.ExceptionType
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.http.HttpHeaders.AUTHORIZATION

@@ -1,5 +1,6 @@
-package com.example.ggyunispring.domain.exception
+package com.example.ggyunispring.adapter
 
+import com.example.ggyunispring.domain.exception.ExceptionType
 import com.example.ggyunispring.domain.exception.member.GoogleIdTokenException
 import com.example.ggyunispring.domain.exception.member.InvalidJwtTokenException
 import org.springframework.http.HttpStatus

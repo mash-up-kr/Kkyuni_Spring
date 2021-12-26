@@ -1,4 +1,6 @@
-package com.example.ggyunispring.domain.exception
+package com.example.ggyunispring.adapter
+
+import com.example.ggyunispring.domain.exception.ExceptionType
 
 data class ExceptionResponse(
     val status: Int,

@@ -2,7 +2,7 @@ package com.example.ggyunispring.adapter.infrastructure.config.security
 
 import com.example.ggyunispring.adapter.infrastructure.jwt.JwtAuthenticationFilter
 import com.example.ggyunispring.adapter.infrastructure.jwt.JwtProvider
-import com.example.ggyunispring.domain.exception.ExceptionResponse
+import com.example.ggyunispring.adapter.ExceptionResponse
 import com.example.ggyunispring.domain.exception.ExceptionType
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.http.HttpMethod
