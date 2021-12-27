@@ -1,5 +1,7 @@
 # Movie log Spring Team
 
+- [Movie log GooglePlay Store](https://play.google.com/store/apps/details?id=com.mashup.kkyuni)
+
 ## 📐현재 프로젝트 전체 구성도
 
 ![스크린샷 2021-12-09 오후 8 26 21](https://user-images.githubusercontent.com/45676906/145388056-15cc2390-71a7-49e8-a6e4-9663749adb33.png)
