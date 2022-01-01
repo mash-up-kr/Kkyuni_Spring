@@ -1,5 +1,7 @@
 # Movie log Spring Team
 
+- [Movie log GooglePlay Store](https://play.google.com/store/apps/details?id=com.mashup.kkyuni)
+
 ## 📐현재 프로젝트 전체 구성도
 
 ![스크린샷 2021-12-09 오후 8 26 21](https://user-images.githubusercontent.com/45676906/145388056-15cc2390-71a7-49e8-a6e4-9663749adb33.png)
@@ -20,13 +22,13 @@
 
 ## 📂 Database Modeling
 
-- 추후 업로드 예정
+![스크린샷 2021-12-26 오후 8 38 45](https://user-images.githubusercontent.com/45676906/147406814-29314c32-9c0f-4364-89e7-11dfbd38f9e2.png)
 
 <br>
 
 ## 프로젝트 트리블 슈팅 및 정리
 
-- [CORS 에러 해결하는 과정]()
+- [CORS 에러 해결하는 과정](https://devlog-wjdrbs96.tistory.com/429)
 - [Vegeta를 사용해서 서버 부하테스트 해보기]()
 - 추가 예정
 
